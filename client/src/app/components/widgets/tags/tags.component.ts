@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'latestposts',
-  templateUrl: './latestposts.component.html'
+  selector: 'tags',
+  templateUrl: './tags.component.html'
 //   styleUrls: ['./app.component.css']
 })
-export class LatestPostsComponent {
+export class TagsComponent {
   title = 'Angular';
 }
