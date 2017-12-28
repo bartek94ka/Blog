@@ -41,6 +41,7 @@ class Comments(models.Model):
     description = models.CharField("Opis", max_length=255)
     author = models.TextField("Autor")
     posted_date = models.DateTimeField('Data dodania', default=timezone.now)
+    news = models.ForeignKey(to=News, related_name='member', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Komentarz"
