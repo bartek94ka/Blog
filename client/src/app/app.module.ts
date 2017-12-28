@@ -4,13 +4,16 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ContentComponent } from './components/content/content.component';
+import { PostComponent } from './components/post/post.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    AppComponent
-
+    AppComponent,
+    ContentComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule
