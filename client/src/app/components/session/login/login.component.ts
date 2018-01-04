@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
   title = 'Angular';
+
+  emailText : string = ""
+  passwordText : string = ""
+
+  loginEvent(event){
+    console.log("Submit login");
+  }
 }

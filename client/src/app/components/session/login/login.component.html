@@ -1,12 +1,12 @@
 <form role="form">
     <label for="email">Email</label>
-    <input type="email" class="form-control" name="email" placeholder="Enter email">
+    <input type="email" value="{{ emailText }}" class="form-control" name="email" placeholder="Enter email">
     
     <label for="name">Password</label>
-    <input type="password" class="form-control" name="password" placeholder="Enter password">
-
+    <input type="password" value="{{ passwordText }}" class="form-control" name="password" placeholder="Enter password">
+<!-- 
     <label for="name">Confirm Password</label>
-    <input type="password" class="form-control" name="confirmpassword" placeholder="Enter password">
-    
-    <input type="submit" value="Login" class="btn btn-primary" />
+    <input type="password" value="{{ confirmPasswordText }}" class="form-control" name="confirmpassword" placeholder="Confirm password">
+     -->
+    <input type="submit" value="Login" class="btn btn-primary center-block" (click)="loginEvent($event)"/>
 </form>

@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
   title = 'Angular';
+
+  emailText : string = ""
+  nickText : string = ""
+  passwordText : string = ""
+  confirmPasswordText : string = ""
+
+  registerEvent(event){
+    console.log("Submit register");
+  }
 }
