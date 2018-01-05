@@ -4,7 +4,7 @@ from rest_framework.renderers import JSONRenderer
 from django.core.paginator import Paginator
 from rest_framework.parsers import JSONParser
 from news.serializers import PostSerializer, NewPostSerializer
-from news.models import News
+from news.models import Posts
 
 class PostViews():
 
@@ -14,7 +14,7 @@ class PostViews():
         List all code snippets, or create a new snippet.
         """
         if request.method == 'GET':
-            post_list = News.objects.all()
+            post_list = Posts.objects.all()
             paginator = Paginator(post_list, 2)
             posts = paginator.get_page(page)
             serializer = PostSerializer(posts, many=True)
@@ -26,7 +26,7 @@ class PostViews():
         Retrieve, update or delete a code news.
         """
         try:
-            post = News.objects.get(pk=pk)
+            post = Posts.objects.get(pk=pk)
         except News.DoesNotExist:
             return HttpResponse(status=404)
 
@@ -40,7 +40,7 @@ class PostViews():
         Retrieve, update or delete a code news.
         """
         try:
-            post = News.objects.get(pk=pk)
+            post = Posts.objects.get(pk=pk)
         except News.DoesNotExist:
             return HttpResponse(status=404)
 
@@ -58,7 +58,7 @@ class PostViews():
         Retrieve, update or delete a code news.
         """
         try:
-            post = News.objects.get(pk=pk)
+            post = Posts.objects.get(pk=pk)
         except News.DoesNotExist:
             return HttpResponse(status=404)
 

@@ -12,7 +12,7 @@ class CommentViews():
     def create_comment(request):
         if request.method == 'POST':
             data = JSONParser().parse(request)
-            data.news = 1
+            # data.news = 1
             serializer = NewCommentSerializer(data=data)
             if serializer.is_valid():
                 serializer.save()

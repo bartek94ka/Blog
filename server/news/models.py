@@ -8,44 +8,45 @@ LANGUAGE_CHOICES = sorted([(item[1][0], item[0]) for item in LEXERS])
 STYLE_CHOICES = sorted((item, item) for item in get_all_styles())
 
 class Category(models.Model):
-    name = models.CharField('Nazwa Kategorii', max_length=100)
+    name = models.CharField('Category name', max_length=100)
     #slug = models.SlugField('Odnośnik', unique=True, max_length=100)
-    icon = models.ImageField('Ikonka Kategorii', upload_to='icons',
+    icon = models.ImageField('Category icon', upload_to='icons',
                               blank=True)
     created = models.DateTimeField(default=timezone.now)
 
     class Meta:
-        verbose_name = "Kategoria"
-        verbose_name_plural = "Kategorie"
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
     def __unicode__(self):
         return self.name
 
 
-class News(models.Model):
-    title = models.CharField('Tytuł', max_length=255)
+class Posts(models.Model):
+    title = models.CharField('Title', max_length=255)
     #slug = models.SlugField('Odnośnik', max_length=255, unique=True)
-    text = models.TextField(verbose_name='Treść')
-    categories = models.ManyToManyField(Category, verbose_name='Kategorie')
-    posted_date = models.DateTimeField('Data dodania', default=timezone.now)
-    author = models.TextField("Autor", max_length=255)
+    text = models.TextField(verbose_name='Description')
+    categories = models.ManyToManyField(Category, verbose_name='Categories')
+    posted_date = models.DateTimeField('Add date', default=timezone.now)
+    author = models.TextField("Author", max_length=255)
 
     class Meta:
-        verbose_name = "Wiadomość"
-        verbose_name_plural = "Wiadomości"
+        verbose_name = "Post"
+        verbose_name_plural = "Posts"
 
     def __unicode__(self):
         return self.title
 
 class Comments(models.Model):
-    description = models.CharField("Opis", max_length=255)
-    author = models.TextField("Autor")
-    posted_date = models.DateTimeField('Data dodania', default=timezone.now)
-    news = models.ForeignKey(to=News, related_name='member', on_delete=models.CASCADE)
+    description = models.CharField("Description", max_length=255)
+    author = models.TextField("Author")
+    posted_date = models.DateTimeField('Add date', default=timezone.now)
+    post = models.ForeignKey(Posts, related_name='comments', on_delete=models.CASCADE)
+    #news = models.ForeignKey(to=News, related_name='member', on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = "Komentarz"
-        verbose_name_plural = "Komentarze"
+        verbose_name = "Comment"
+        verbose_name_plural = "Comments"
     
     def __unicode__(self):
         return self.description

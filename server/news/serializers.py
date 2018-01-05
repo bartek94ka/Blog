@@ -1,15 +1,15 @@
 from rest_framework import serializers
-from news.models import Category, News, Comments, LANGUAGE_CHOICES, STYLE_CHOICES
+from news.models import Category, Posts, Comments, LANGUAGE_CHOICES, STYLE_CHOICES
 from django.contrib.auth.models import User
 
 class NewPostSerializer(serializers.ModelSerializer):
     class Meta:
-        model = News
+        model = Posts
         fields = ('title', 'text', 'categories', 'posted_date', 'author')
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
-        model = News
+        model = Posts
         fields = ('id', 'title', 'text', 'categories', 'posted_date', 'author')
 
 class CategorySerializer(serializers.ModelSerializer):

@@ -3,9 +3,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
-from news.models import News, Category, Comments
-from news.serializers import PostSerializer, CategorySerializer, CommentsSerializer, UserSerializer, UserDetailsSerializer
-from django.contrib.auth.models import User
+from news.models import Category, Comments
+from news.serializers import CategorySerializer
 
 @csrf_exempt
 def categories_list(request):
