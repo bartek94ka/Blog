@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from news.models import Category, News, Comments, LANGUAGE_CHOICES, STYLE_CHOICES
+from django.contrib.auth.models import User
 
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +16,13 @@ class CommentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
         fields = '__all__'
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'password', 'first_name', 'last_name', 'email')
+        # fields = '__all__'
+class UserDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'first_name', 'last_name', 'email')

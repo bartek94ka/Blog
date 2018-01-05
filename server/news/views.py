@@ -4,8 +4,8 @@ from django.core.paginator import Paginator
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from news.models import News, Category, Comments
-from news.serializers import NewsSerializer, CategorySerializer, CommentsSerializer
-
+from news.serializers import NewsSerializer, CategorySerializer, CommentsSerializer, UserSerializer, UserDetailsSerializer
+from django.contrib.auth.models import User
 
 def object1(request):
     json = { 'key' : 'value' }
@@ -66,7 +66,7 @@ def news_detail(request, pk):
 
     elif request.method == 'DELETE':
         news.delete()
-        return HttpResponse(status=204)
+        return HttpResponse(status=200)
 
 @csrf_exempt
 def categories_list(request):
@@ -105,18 +105,18 @@ def category_detail(request, pk):
         serializer = CategorySerializer(category, data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
+            return HttpResponse(status=200)
         return JsonResponse(serializer.errors, status=400)
 
     elif request.method == 'DELETE':
         category.delete()
-        return HttpResponse(status=204)
+        return HttpResponse(status=200)
 
 
 @csrf_exempt
 def comment_detail(request, pk):
     """
-    Retrieve, update or delete a code category.
+    Retrieve, update or delete a code comment.
     """
     try:
         comment = Comments.objects.get(pk=pk)
@@ -132,9 +132,45 @@ def comment_detail(request, pk):
         serializer = CommentsSerializer(comment, data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
+            return HttpResponse(status=200)
         return JsonResponse(serializer.errors, status=400)
 
     elif request.method == 'DELETE':
         comment.delete()
-        return HttpResponse(status=204)
+        return HttpResponse(status=200)
+
+@csrf_exempt
+def user_detail(request, pk):
+    try:
+        user = User.objects.get(pk=pk)
+    except User.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = UserDetailsSerializer(user)
+        return JsonResponse(serializer.data)
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = UserDetailsSerializer(user, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return HttpResponse(status=200)
+        return JsonResponse(serializer.errors, status=400)
+    elif request.method == 'DELETE':
+        user.delete()
+        return HttpResponse(status=200)
+
+@csrf_exempt
+def user(request):
+    if request.method == 'GET':
+        users = User.objects.all()
+        serializer = UserDetailsSerializer(users, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = UserSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)

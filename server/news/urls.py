@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^api/categories/$', views.categories_list),
     url(r'^api/categories/(?P<pk>[0-9]+)/$', views.category_detail),
     url(r'^api/comments/(?P<pk>[0-9]+)/$', views.comment_detail),
+    url(r'^api/user/(?P<pk>[0-9]+)/$', views.user_detail),
+    url(r'^api/user/$', views.user)
 ]
