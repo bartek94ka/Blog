@@ -8,9 +8,11 @@ class NewPostSerializer(serializers.ModelSerializer):
         fields = ('title', 'text', 'categories', 'posted_date', 'author')
 
 class PostSerializer(serializers.ModelSerializer):
+    comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
     class Meta:
         model = Posts
-        fields = ('id', 'title', 'text', 'categories', 'posted_date', 'author')
+        fields = ('id', 'title', 'text', 'categories', 'posted_date', 'author', 'comments')
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,11 +22,12 @@ class CategorySerializer(serializers.ModelSerializer):
 class NewCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
-        fields = ('description', 'author', 'posted_date', 'news')
+        fields = ('description', 'author', 'posted_date', 'post')
 
 class CommentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
+        #fields = ('description', 'author', 'posted_date', 'post')
         fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
