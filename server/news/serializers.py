@@ -20,7 +20,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class NewCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
-        fields = '__all__'
+        fields = ('description', 'author', 'posted_date', 'news')
 
 class CommentsSerializer(serializers.ModelSerializer):
     class Meta:
