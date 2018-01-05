@@ -1,0 +1,78 @@
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.renderers import JSONRenderer
+from django.core.paginator import Paginator
+from rest_framework.parsers import JSONParser
+from news.serializers import PostSerializer, NewPostSerializer
+from news.models import News
+
+class PostViews():
+
+    @csrf_exempt
+    def get_page_posts(request, page):
+        """
+        List all code snippets, or create a new snippet.
+        """
+        if request.method == 'GET':
+            post_list = News.objects.all()
+            paginator = Paginator(post_list, 2)
+            posts = paginator.get_page(page)
+            serializer = PostSerializer(posts, many=True)
+            return JsonResponse(serializer.data, safe=False)
+
+    @csrf_exempt
+    def get_post_details(request, pk):
+        """
+        Retrieve, update or delete a code news.
+        """
+        try:
+            post = News.objects.get(pk=pk)
+        except News.DoesNotExist:
+            return HttpResponse(status=404)
+
+        if request.method == 'GET':
+            serializer = PostSerializer(post)
+            return JsonResponse(serializer.data)
+    
+    @csrf_exempt
+    def update_post(request, pk):
+        """
+        Retrieve, update or delete a code news.
+        """
+        try:
+            post = News.objects.get(pk=pk)
+        except News.DoesNotExist:
+            return HttpResponse(status=404)
+
+        if request.method == 'PUT':
+            data = JSONParser().parse(request)
+            serializer = NewPostSerializer(post, data=data)
+            if serializer.is_valid():
+                serializer.save()
+                return HttpResponse(status=200)
+            return JsonResponse(serializer.errors, status=400)
+
+    @csrf_exempt
+    def delete_post(request, pk):
+        """
+        Retrieve, update or delete a code news.
+        """
+        try:
+            post = News.objects.get(pk=pk)
+        except News.DoesNotExist:
+            return HttpResponse(status=404)
+
+        if request.method == 'DELETE':
+            post.delete()
+            return HttpResponse(status=200)
+    
+    @csrf_exempt
+    def create_post(request):
+        if request.method == 'POST':
+            data = JSONParser().parse(request)
+            serializer = NewPostSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+                return HttpResponse(status=200)
+            return JsonResponse(serializer.errors, status=400)
+    
