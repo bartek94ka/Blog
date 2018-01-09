@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component'
@@ -55,7 +56,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [PostService, LoginService],
+  providers: [CookieService, PostService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
