@@ -6,6 +6,7 @@ from news.api_views.user_views import UserViews
 from news.api_views.post_views import PostViews
 from news.api_views.comment_views import CommentViews
 from news.api_views.category_views import CategoryViews
+from news.api_views.session_views import SessionViews
 
 urlpatterns = [
     url(r'^api/post/$', PostViews.create_post),
@@ -24,5 +25,7 @@ urlpatterns = [
     url(r'^api/comment/post/(?P<pk>[0-9]+)/$', CommentViews.get_post_all_comments),
     url(r'^api/user/$', UserViews.get_all_users),
     url(r'^api/user/(?P<pk>[0-9]+)/$', UserViews.get_user_details),
-    url(r'^api/user/update/(?P<pk>[0-9]+)/$', UserViews.update_user)
+    url(r'^api/user/update/(?P<pk>[0-9]+)/$', UserViews.update_user),
+
+    url(r'^api/signup/$', SessionViews.signup)
 ]
