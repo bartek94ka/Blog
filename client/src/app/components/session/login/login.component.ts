@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { LoginService } from './../../../services/session/login.service'
 
 @Component({
   selector: 'login',
@@ -6,12 +7,16 @@ import { Component } from '@angular/core';
 //   styleUrls: ['./app.component.css']
 })
 export class LoginComponent {
-  title = 'Angular';
-
+  private req: any;
   emailText : string = ""
   passwordText : string = ""
+  constructor(private _service: LoginService){}
 
   loginEvent(event){
-    console.log("Submit login");
+    this.req = this._service.get(this.emailText, this.passwordText).subscribe(data=>{
+      console.log(data)
+    })
   }
+  ngOnInit(){}
+  ngOnDestroy(){}
 }

@@ -19,6 +19,7 @@ import { RegisterComponent } from './components/session/register/register.compon
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 import { PostService } from './services/post.servcie'
+import { LoginService } from './services/session/login.service'
 
 
 const appRoutes: Routes = [
@@ -54,7 +55,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [PostService],
+  providers: [PostService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
