@@ -26,7 +26,7 @@ class UserViews():
             return JsonResponse(serializer.data, safe=False)
     
     @csrf_exempt
-    def update_user_data(request, pk):
+    def update_user(request, pk):
         try:
             user = User.objects.get(pk=pk)
         except User.DoesNotExist:
