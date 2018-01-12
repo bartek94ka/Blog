@@ -11,9 +11,11 @@
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav pull-right active">
-                <li [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['register']">Register</a></li>
-                <li [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['login']">Login</a></li>
+                <li *ngIf="isAuthenticated == false" [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['register']">Register</a></li>
+                <li *ngIf="isAuthenticated == false" [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['login']">Login</a></li>
+                <li *ngIf="isAuthenticated == true" (click)="logoutEvent($event)"><a class="nav-link" [routerLink]="['home']">Logout</a></li>
             </ul>
+            
             <form class="navbar-form navbar-right" role="search">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">

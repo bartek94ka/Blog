@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
+import { GlobalEventsManager } from './GlobalEventsManager'
 import { HomeComponent } from './components/home/home.component'
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ContentComponent } from './components/content/content.component';
@@ -56,7 +57,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [CookieService, PostService, LoginService],
+  providers: [CookieService, PostService, LoginService, GlobalEventsManager],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

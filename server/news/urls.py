@@ -2,12 +2,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from news import urls
+from rest_framework import authentication
 from rest_framework.authtoken import views
 from news.api_views.user_views import UserViews
 from news.api_views.post_views import PostViews
 from news.api_views.comment_views import CommentViews
 from news.api_views.category_views import CategoryViews
-from news.api_views.session_views import SessionViews
+# from news.api_views.session_views import SessionViews
 
 urlpatterns = [
     url(r'^api/post/$', PostViews.create_post),
@@ -27,6 +28,5 @@ urlpatterns = [
     url(r'^api/user/$', UserViews.get_all_users),
     url(r'^api/user/(?P<pk>[0-9]+)/$', UserViews.get_user_details),
     url(r'^api/user/update/(?P<pk>[0-9]+)/$', UserViews.update_user),
-    url(r'^api/signup/$', SessionViews.signup),
     url(r'^api/api-token-auth/$', views.obtain_auth_token)
 ]

@@ -7,6 +7,7 @@ from rest_framework.parsers import JSONParser
 from news.serializers import UserSerializer, UserDetailsSerializer
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from rest_framework import authtoken
 
 class SessionViews():
     def signup(request):
