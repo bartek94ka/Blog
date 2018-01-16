@@ -71,9 +71,5 @@ class UserViews():
     def get_logged_user(request):
         if request.method == 'GET':
             userId = request.user.id
-            # data = User.objects.filter(owner=request.user)
-            #serializer = UserSerializer(user, many=True)
             return UserViews.get_user_details(request, userId)
-            #return JsonResponse(serializer.data, safe=False)
-            #token = Token.objects.get(key=response.data['token'])
-            #return Response({'token': token.key, 'id': token.user_id})
+            

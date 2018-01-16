@@ -10,17 +10,33 @@
             <a href="home" class="navbar-brand">Blog</a>
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-            <ul class="nav navbar-nav pull-right active">
+            
+            <!-- <ul class="nav navbar-nav pull-right active">
                 <li *ngIf="isAuthenticated == false" [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['register']">Register</a></li>
                 <li *ngIf="isAuthenticated == false" [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['login']">Login</a></li>
                 <li *ngIf="isAuthenticated == true" (click)="logoutEvent($event)"><a class="nav-link" [routerLink]="['home']">Logout</a></li>
-            </ul>
+            </ul> -->
             
             <form class="navbar-form navbar-right" role="search">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">
               </div> 
               <button type="submit" class="btn btn-default">Submit</button>
+              <div class="dropdown pull-right active" style="margin-left:5px">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Settings
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" *ngIf="isAuthenticated == true" [routerLinkActive]="['active']"  aria-labelledby="dropdownMenu1">
+                        <li><a class="nav-link" [routerLink]="['userdetails']">User details</a></li>
+                        <li  (click)="logoutEvent($event)"><a class="nav-link" [routerLink]="['home']">Logout</a></li>
+                    </ul>
+                       
+                    <ul class="dropdown-menu" *ngIf="isAuthenticated == false" [routerLinkActive]="['active']" aria-labelledby="dropdownMenu1">
+                        <li><a class="nav-link" [routerLink]="['login']">Login</a></li>
+                        <li><a class="nav-link" [routerLink]="['register']">Register</a></li>
+                    </ul>
+                </div>
             </form>
             <ul class="nav navbar-nav active">
                 <li [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['home']">Home</a></li>

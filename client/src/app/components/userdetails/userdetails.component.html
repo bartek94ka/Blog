@@ -1,0 +1,15 @@
+<form class="center-block" role="form" style="max-width: 300px">
+    <label for="email">Email</label>
+    <input type="email" value="{{ emailText }}" class="form-control" name="email" placeholder="Enter email">
+    
+    <label for="name">Nick</label>
+    <input type="text" value="{{ nickText }}" class="form-control" name="nick" placeholder="Enter nick">
+
+    <label for="name">First Name</label>
+    <input type="text" value="{{ firstNameText }}" class="form-control" name="firstName" placeholder="Enter first name">
+    
+    <label for="name">First Name</label>
+    <input type="text" value="{{ lastNameText }}" class="form-control" name="lastName" placeholder="Enter last name">
+    
+    <input type="submit" value="Save" class="btn btn-primary center-block" (click)="updateEvent($event)"/>
+</form>

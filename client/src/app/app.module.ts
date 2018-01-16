@@ -20,8 +20,10 @@ import { LoginComponent } from './components/session/login/login.component';
 import { RegisterComponent } from './components/session/register/register.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
+import { UserDetailsComponent } from './components/userdetails/userdetails.component'
 import { PostService } from './services/post.servcie'
 import { LoginService } from './services/session/login.service'
+import { UserService } from './services/user.service'
 
 
 const appRoutes: Routes = [
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'userdetails', component: UserDetailsComponent }
 ]
 
 @NgModule({
@@ -48,7 +51,8 @@ const appRoutes: Routes = [
     SidebarComponent,
     LatestPostsComponent,
     CategoriesComponent,
-    TagsComponent
+    TagsComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,12 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [CookieService, PostService, LoginService, GlobalEventsManager],
+  providers: [
+    CookieService, 
+    PostService, 
+    LoginService, 
+    UserService, 
+    GlobalEventsManager],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
