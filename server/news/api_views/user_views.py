@@ -1,9 +1,13 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from news.serializers import UserSerializer, UserDetailsSerializer
 from django.contrib.auth.models import User
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.views import Token, AuthTokenSerializer
+from rest_framework.response import Response
 
 class UserViews():
 
@@ -60,3 +64,16 @@ class UserViews():
                 serializer.save()
                 return HttpResponse(status=200)
             return JsonResponse(serializer.errors, status=400)
+
+    @api_view(['GET'])
+    @csrf_exempt
+    @permission_classes((IsAuthenticated, ))
+    def get_logged_user(request):
+        if request.method == 'GET':
+            userId = request.user.id
+            # data = User.objects.filter(owner=request.user)
+            #serializer = UserSerializer(user, many=True)
+            return UserViews.get_user_details(request, userId)
+            #return JsonResponse(serializer.data, safe=False)
+            #token = Token.objects.get(key=response.data['token'])
+            #return Response({'token': token.key, 'id': token.user_id})

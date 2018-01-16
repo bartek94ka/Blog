@@ -7,7 +7,6 @@ import { GlobalEventsManager } from "./../../../GlobalEventsManager";
 @Component({
   selector: 'login',
   templateUrl: './login.component.html'
-//   styleUrls: ['./app.component.css']
 })
 export class LoginComponent {
   cookieValue = ""

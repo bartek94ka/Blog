@@ -38,16 +38,5 @@ class UserSerializer(serializers.ModelSerializer):
 class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email')
-
-# class LoginSerializer(serializers.LoginSerializer):
-#     def get_fields(self):
-#         fields = super(LoginSerializer, self).get_fields()
-#         fields['email'] = fields['username']
-#         del fields['username']
-#         return fields
-
-#     def validate(self, attrs):
-#         attrs['username'] = attrs['email']
-#         del attrs['email']
-#         return super(LoginSerializer, self).validate(attrs)
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'is_superuser')
+        # fields = '__all__'
