@@ -23,7 +23,7 @@ export class UserService {
                 'Content-Type': 'application/json'
             })
         })
-        return this.http.get(endpoint + "api/user/logged/", options)
+        return this.http.get(endpoint + "user/logged/", options)
         .map(response=>response.json())
     }
 }

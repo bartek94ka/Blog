@@ -1,0 +1,12 @@
+Serwer
+pip install django-cors-headers
+pip install djangorestframework
+pip install social-auth-app-django
+pip install -U Django
+pip install Pillow
+
+Client
+install npm from: https://nodejs.org/en/download/
+npm install -g @angular/cli@latest
+npm install bootstrap@3
+z lokalizacji projektu "client": nmp install
