@@ -15,23 +15,33 @@ export class UserDetailsComponent {
     nickText : string = ""
     firstNameText : string = ""
     lastNameText : string = ""
+    user;
 
     ngOnInit(){
         this.cookieValue = this._cookieService.get('BlogToken');
         this.req = this._userService.getLoggedUserData(this.cookieValue).subscribe(data=>{
-            console.log(data)
+            this.user = data;
+            console.log(this.user)
+            this.emailText = data.email;
+            this.nickText = data.username;
+            this.firstNameText = data.first_name;
+            this.lastNameText = data.last_name;
         })
     }
 
-    registerEvent(event){
-        // this.req = this._service.get(this.emailText, this.passwordText).subscribe(data=>{
-        //   console.log(data.token)
+    updateEvent(event){
+        this.user.first_name = this.firstNameText;
+        this.user.last_name = this.lastNameText;
+        console.log(this.user)
+        this.req = this._userService.updateUserData(this.cookieValue, this.user).
+        subscribe(data=>{
+            console.log(data)
         //   this._cookieService.set( 'BlogToken', data.token );
         //   this.cookieValue = this._cookieService.get('BlogToken');
         //   if( this.cookieValue != ""){
         //     this._globalEventsManager.showNavBar(true);
         //     this._router.navigate([''])
-        //   }
+          })
       }
 
     ngOnDestroy(){}

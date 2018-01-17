@@ -4,8 +4,6 @@ import { HttpRequest, HttpHandler, HttpClient } from '@angular/common/http'
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-// import { RequestOptions } from '@angular/http/src/base_request_options';
-// import { Headers } from '@angular/http/src/headers';
 
 const endpoint = 'http://127.0.0.1:8000/api/'
 
@@ -25,5 +23,17 @@ export class UserService {
         })
         return this.http.get(endpoint + "user/logged/", options)
         .map(response=>response.json())
+    }
+    updateUserData(token, user){
+        this.tokenValue = "Token " + token
+        var options = new RequestOptions({
+            headers: new Headers({
+                'Authorization': this.tokenValue,
+                'Content-Type': 'application/json'
+            })
+        })
+        var url = endpoint + "user/update/" + user.id + "/"
+        return this.http.put(url, user, options).
+        map(response=>response.json())
     }
 }
