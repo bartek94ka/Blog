@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
-from news.serializers import UserSerializer, UserDetailsSerializer
+from news.serializers import UserSerializer, UserDetailsSerializer, NewUserSerializer
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import Token, AuthTokenSerializer
@@ -59,11 +59,12 @@ class UserViews():
     def create_user(request):
         if request.method == 'POST':
             data = JSONParser().parse(request)
-            serializer = UserSerializer(data=data)
+            serializer = NewUserSerializer(data=data)
             if serializer.is_valid():
                 serializer.save()
                 return HttpResponse(status=200)
             return JsonResponse(serializer.errors, status=400)
+        return HttpResponse(status=400)
 
     @api_view(['GET'])
     @csrf_exempt

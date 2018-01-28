@@ -1,26 +1,29 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import login, authenticate
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.renderers import JSONRenderer
-from django.core.paginator import Paginator
 from rest_framework.parsers import JSONParser
-from news.serializers import UserSerializer, UserDetailsSerializer
+from news.serializers import NewUserSerializer
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from rest_framework import authtoken
+from rest_framework.authtoken import views
+import json
 
 class SessionViews():
+    #@csrf_exempt
+    @api_view(['POST'])
     def signup(request):
         if request.method == 'POST':
-            data = JSONParser().parse(request)
-            serializer = UserSerializer(data=data)
-            if data.is_valid():
-                serializer.save()
+            try:
+                #print(request.data)
+                data = JSONParser().parse(request)
                 username = data.get('username')
-                raw_password = data.get('password1')
-                user = authenticate(username=username, password=raw_password)
-                login(request, user)
-                return redirect('home')
-            else:
-                print('cos jest zle')
-        return redirect('home')
+                email = data.get('email')
+                raw_password = data.get('password')
+                user = User.objects.create_user(username, email, raw_password)
+                #user = Users.objects.get(username=username)
+                return HttpResponse(status=200)
+            except ValueError:
+                print(ValueError.value)
+        return HttpResponse(status=400)

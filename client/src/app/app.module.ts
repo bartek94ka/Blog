@@ -23,6 +23,7 @@ import { AboutComponent } from './components/about/about.component';
 import { UserDetailsComponent } from './components/userdetails/userdetails.component'
 import { PostService } from './services/post.servcie'
 import { LoginService } from './services/session/login.service'
+import { RegisterService } from './services/session/register.service'
 import { UserService } from './services/user.service'
 
 
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
   providers: [
     CookieService, 
     PostService, 
-    LoginService, 
+    LoginService,
+    RegisterService, 
     UserService, 
     GlobalEventsManager],
   bootstrap: [AppComponent]
