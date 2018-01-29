@@ -12,6 +12,14 @@ export class UserService {
     constructor(private http: Http, private httpClient: HttpClient){}
     private tokenValue : string = ""
 
+    getAll(){
+        return this.http.get(endpoint + "user/").map(response=>response.json())
+    }
+
+    getById(userId){
+        return this.http.get(endpoint + "user/" + userId).map(response=>response.json())
+    }
+
     getLoggedUserData(token){
         this.tokenValue = "Token " + token
         console.log("get logged user data")
@@ -24,6 +32,7 @@ export class UserService {
         return this.http.get(endpoint + "user/logged/", options)
         .map(response=>response.json())
     }
+
     updateUserData(token, user){
         this.tokenValue = "Token " + token
         var options = new RequestOptions({

@@ -4,7 +4,8 @@ import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'postlist',
-  templateUrl: './postlist.component.html'
+  templateUrl: './postlist.component.html',
+  styleUrls: ['./postlist.component.css']
 })
 export class PostListComponent {
     constructor(private _cookieService: CookieService){

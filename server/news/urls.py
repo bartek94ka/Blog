@@ -30,6 +30,5 @@ urlpatterns = [
     url(r'^api/user/update/(?P<pk>[0-9]+)/$', UserViews.update_user),
     url(r'^api/user/logged/$', UserViews.get_logged_user),
     url(r'^api/api-token-auth/$', views.obtain_auth_token),
-    #url(r'^api/signup/$', SessionViews.signup)
     url(r'^api/signup/$', UserViews.create_user)
 ]

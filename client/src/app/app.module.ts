@@ -24,10 +24,13 @@ import { UserDetailsComponent } from './components/userdetails/userdetails.compo
 import { NewPostComponent } from './components/newpost/newpost.component';
 import { WorkspaceComponent } from './components/workspace/workspace.component';
 import { PostListComponent } from './components/postlist/postlist.component';
+
 import { PostService } from './services/post.servcie';
 import { LoginService } from './services/session/login.service';
 import { RegisterService } from './services/session/register.service';
 import { UserService } from './services/user.service';
+import { CategoryService } from './services/category.service';
+import { CommentService } from './services/comment.service';
 
 
 const appRoutes: Routes = [
@@ -76,7 +79,9 @@ const appRoutes: Routes = [
     PostService, 
     LoginService,
     RegisterService, 
-    UserService, 
+    UserService,
+    CategoryService,
+    CommentService, 
     GlobalEventsManager],
   bootstrap: [AppComponent]
 })
