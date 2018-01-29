@@ -10,29 +10,18 @@
             <th></th>
         </thead>
         <tbody>
-        <tr>
-            <td>dana1</td>
-            <td>dana2</td>
-            <td>dana3</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-                <button type="button" class="btn btn-warning btn-sm">Remove</button>
-            </td>
-        </tr>
-        <tr>
-            <td>dana1</td>
-            <td>dana2</td>
-            <td>dana3</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-                <button type="button" class="btn btn-warning btn-sm">Remove</button>
-            </td>
-        </tr>
-    </tbody>
+            <tr *ngFor="let post of postCollection">
+                <td>{{post.posted_date | date :  "dd.MM.y"}}</td>
+                <td>{{post.title}}</td>
+                <td>{{post.author}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-sm">Remove</button>
+                </td>
+            </tr>
+        </tbody>
     </table>
 </div>
 </div>
@@ -40,10 +29,10 @@
     <table align="center">
         <tr>
             <td>
-                <button type="button" class="btn btn-dark">Prev</button>
+                <button type="button" class="btn btn-dark" (click)="PrevPostPageEvent($event)">Prev</button>
             </td>
             <td>    
-                <button type="button" class="btn btn-dark">Next</button>
+                <button type="button" class="btn btn-dark" (click)="NextPostPageEvent($event)">Next</button>
             </td>
         </tr>
     </table>
