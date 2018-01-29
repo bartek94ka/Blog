@@ -14,4 +14,16 @@ export class PostService {
         console.log("get posts")
         return this.http.get(endpoint + "news/").map(response=>response.json())
     }
+
+    getByPage(pageNumber){
+        return this.http.get(endpoint + "post/page/" + pageNumber).map(response=>response.json())
+    }
+
+    removePostById(postId){
+        return this.http.delete(endpoint + "post/delete/" + postId).map(response=>response.json())
+    }
+
+    updatePostById(postId, body){
+        return this.http.put(endpoint + "post/update/" + postId, body).map(response=>response.json())
+    }
 }

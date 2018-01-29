@@ -21,10 +21,13 @@ import { RegisterComponent } from './components/session/register/register.compon
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 import { UserDetailsComponent } from './components/userdetails/userdetails.component'
-import { PostService } from './services/post.servcie'
-import { LoginService } from './services/session/login.service'
-import { RegisterService } from './services/session/register.service'
-import { UserService } from './services/user.service'
+import { NewPostComponent } from './components/newpost/newpost.component';
+import { WorkspaceComponent } from './components/workspace/workspace.component';
+import { PostListComponent } from './components/postlist/postlist.component';
+import { PostService } from './services/post.servcie';
+import { LoginService } from './services/session/login.service';
+import { RegisterService } from './services/session/register.service';
+import { UserService } from './services/user.service';
 
 
 const appRoutes: Routes = [
@@ -35,7 +38,10 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'userdetails', component: UserDetailsComponent }
+  { path: 'userdetails', component: UserDetailsComponent },
+  { path: 'workspace', component: WorkspaceComponent },
+  { path: 'workspace/newpost', component: NewPostComponent },
+  { path: 'workspace/postlist', component: PostListComponent }
 ]
 
 @NgModule({
@@ -53,7 +59,10 @@ const appRoutes: Routes = [
     LatestPostsComponent,
     CategoriesComponent,
     TagsComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    WorkspaceComponent,
+    NewPostComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,
