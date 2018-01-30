@@ -21,6 +21,15 @@ class PostViews():
             return JsonResponse(serializer.data, safe=False)
 
     @csrf_exempt
+    def get_posts_count(request):
+        if request.method == 'GET':
+            count = Posts.objects.count()
+            return JsonResponse(count, safe=False)
+        else:
+            return JsonResponse(0, safe=False)
+            
+
+    @csrf_exempt
     def get_post_details(request, pk):
         """
         Retrieve, update or delete a code news.

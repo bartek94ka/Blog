@@ -13,6 +13,7 @@ from news.api_views.session_views import SessionViews
 urlpatterns = [
     url(r'^api/post/$', PostViews.create_post),
     url(r'^api/post/(?P<pk>[0-9]+)/$', PostViews.get_post_details),
+    url(r'^api/post/count/$', PostViews.get_posts_count),
     url(r'^api/post/delete/(?P<pk>[0-9]+)/$', PostViews.delete_post),
     url(r'^api/post/update/(?P<pk>[0-9]+)/$', PostViews.update_post),
     url(r'^api/post/page/(?P<page>[0-9]+)/$', PostViews.get_page_posts),

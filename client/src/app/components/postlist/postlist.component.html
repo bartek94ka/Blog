@@ -15,10 +15,10 @@
                 <td>{{post.title}}</td>
                 <td>{{post.author}}</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="EditPostEvent($event, post.id);">Edit</button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-warning btn-sm">Remove</button>
+                    <button type="button" class="btn btn-warning btn-sm" (click)="RemovePostEvent($event, post.id);">Remove</button>
                 </td>
             </tr>
         </tbody>

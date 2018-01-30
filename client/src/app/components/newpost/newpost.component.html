@@ -4,8 +4,17 @@
     
     <label for="name">Text</label>
     <textarea name="Text1" cols="40" rows="5" class="form-control" placeholder="Enter text">{{ textText }}</textarea>
-
     <!-- <input type="" value="{{ categories }}" class="form-control" name="confirmpassword" placeholder="Confirm password"> -->
-       
+    <label>Category</label>
+    <select multiple class="form-control">
+        <option selected>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
+
+
+    <br>   
     <input type="submit" value="Add post" class="btn btn-primary center-block" (click)="addPostEvent($event)"/>
 </form>

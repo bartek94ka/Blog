@@ -15,11 +15,11 @@ export class PostService {
     }
 
     getById(postId){
-        return this.http.get(endpoint + "post/" + postId).map(response=>response.json())
+        return this.http.get(endpoint + "post/" + postId + "/").map(response=>response.json())
     }
 
     deletePostById(postId){
-        return this.http.delete(endpoint + "post/delete/" + postId).map(response=>response.json())
+        return this.http.delete(endpoint + "post/delete/" + postId + "/").map(response=>response.json())
     }
 
     updatePostById(postId, body){
@@ -34,5 +34,9 @@ export class PostService {
         //     })
         // })
         return this.http.get(endpoint + "post/page/" + pageNumber + "/").map(response=>response.json())
+    }
+
+    getPostCount(){
+        return this.http.get(endpoint + "post/count/").map(response=>response.json())
     }
 }
