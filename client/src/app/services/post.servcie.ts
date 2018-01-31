@@ -10,6 +10,10 @@ const endpoint = 'http://127.0.0.1:8000/api/'
 export class PostService {
     constructor(private http: Http){}
 
+    create(body){
+        return this.http.post(endpoint + "post/", body).map(response=>response.json)
+    }
+
     get(){
         return this.http.get(endpoint + "post/").map(response=>response.json())
     }
