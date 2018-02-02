@@ -1,0 +1,12 @@
+.contact-info-row{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px
+}
+
+.contact-info-row img{
+    margin-right: 5%;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
