@@ -10,3 +10,8 @@
     opacity: 0.5;
     filter: alpha(opacity=50);
 }
+
+.contact-info-row:hover img{
+    opacity: 1;
+    filter: alpha(opacity=1); /* For IE8 and earlier */
+}
