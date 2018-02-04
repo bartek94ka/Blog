@@ -22,7 +22,7 @@ export class LoginComponent {
       this.cookieValue = this._cookieService.get('BlogToken');
       if( this.cookieValue != ""){
         this._globalEventsManager.showNavBar(true);
-        this._router.navigate([''])
+        this._router.navigate(['home'])
       }
   });
   }

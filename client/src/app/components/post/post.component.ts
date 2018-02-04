@@ -4,18 +4,17 @@ import { PostService } from './../../services/post.servcie'
 @Component({
   selector: 'post',
   templateUrl: './post.component.html'
-//   styleUrls: ['./app.component.css']
 })
 export class PostComponent {
-  
-  private req: any;
-  constructor(private _service: PostService){}
+  constructor(private _postService: PostService){}
 
+  postCollection: any;
+  imgSrc : string;
   ngOnInit(){
-    this.req = this._service.get().subscribe(data=>{
-      console.log(data)
+    this._postService.getAllPosts().subscribe(data=>{
+      this.postCollection = data;
+      this.imgSrc = "assets/images/post_image.png";
     })
     // console.log(this.posts)
   }
-  ngOnDestroy(){}
 }

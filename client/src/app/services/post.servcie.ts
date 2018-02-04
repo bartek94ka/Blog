@@ -14,12 +14,16 @@ export class PostService {
         return this.http.post(endpoint + "post/", body).map(response=>response.json)
     }
 
-    get(){
-        return this.http.get(endpoint + "post/").map(response=>response.json())
+    getAllPosts(){
+        return this.http.get(endpoint + "post/all/").map(response=>response.json())
     }
 
     getById(postId){
         return this.http.get(endpoint + "post/" + postId + "/").map(response=>response.json())
+    }
+
+    getPostsByCategoryId(categoryId){
+        return this.http.get(endpoint + "post/category/" + categoryId + "/").map(response=>response.json())
     }
 
     deletePostById(postId){

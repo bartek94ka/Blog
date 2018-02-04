@@ -9,6 +9,28 @@ from news.models import Posts
 class PostViews():
 
     @csrf_exempt
+    def get_all_posts(request):
+        if request.method == 'GET':
+            try:
+                posts_list = Posts.objects.all()
+            except:
+                return HttpResponse(status=404)
+            serializer = PostSerializer(posts_list, many=True)
+            return JsonResponse(serializer.data, safe=False)
+        return HttpResponse(status=404)
+
+    @csrf_exempt
+    def get_posts_by_comment_id(request, pk):
+        if request.method == 'GET':
+            try:
+                posts_list = Posts.objects.filter(categories__id__in=pk)
+            except:
+                return HttpResponse(status=404)  
+            serializer = PostSerializer(posts_list, many=True)
+            return JsonResponse(serializer.data, safe=False)
+        return HttpResponse(status=404)
+
+    @csrf_exempt
     def get_page_posts(request, page):
         """
         List all code snippets, or create a new snippet.
