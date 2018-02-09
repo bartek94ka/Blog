@@ -1,0 +1,17 @@
+.contact-info-row{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px
+}
+
+.contact-info-row img{
+    margin-right: 5%;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+.contact-info-row:hover img{
+    opacity: 1;
+    filter: alpha(opacity=1); /* For IE8 and earlier */
+}

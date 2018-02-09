@@ -5,20 +5,24 @@ import { PostService } from '../../services/post.servcie';
 
 @Component({
   selector: 'postcategory',
-  templateUrl: './postcategory.component.html'
-//   styleUrls: ['./app.component.css']
+  templateUrl: './postcategory.component.html',
+  styleUrls: ['./postcategory.component.css']
 })
 export class PostCategoryComponent {
   constructor(private _postService : PostService, private route: ActivatedRoute){}
-  postsCollection : any;
+  
+  postCollection : any;
   cattegoryId : number; 
+  imgSrc : string;
+  
   ngOnInit(){
     this.route.params.subscribe(params => {
       this.cattegoryId = +params['id'];
       console.log(this.cattegoryId);
     });
     this._postService.getPostsByCategoryId(this.cattegoryId).subscribe(data=>{
-      this.postsCollection = data;
-    })
+      this.postCollection = data;
+      this.imgSrc = "assets/images/post_image.png";
+    });
   }
 }

@@ -15,9 +15,12 @@
                 <li [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['contact']">Contact</a></li>
                 <li [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['about']">About</a></li>
                 <li [routerLinkActive]="['active']" *ngIf="isAdmin == true"><a class="nav-link" [routerLink]="['workspace']">Workspace</a></li>
+                <li [routerLinkActive]="['active']" *ngIf="isAuthenticated == true"><a class="nav-link" [routerLink]="['userdetails']">User details</a></li>
+                
+            </ul>
+            <ul style="float:right" class="nav navbar-nav active">
                 <li [routerLinkActive]="['active']" *ngIf="isAuthenticated == false"><a class="nav-link" [routerLink]="['login']">Login</a></li>
                 <li [routerLinkActive]="['active']" *ngIf="isAuthenticated == false"><a class="nav-link" [routerLink]="['register']">Register</a></li>
-                <li [routerLinkActive]="['active']" *ngIf="isAuthenticated == true"><a class="nav-link" [routerLink]="['userdetails']">User details</a></li>
                 <li (click)="logoutEvent($event)" *ngIf="isAuthenticated == true"><a class="nav-link" [routerLink]="['home']">Logout</a></li>
             </ul>
         </nav>
