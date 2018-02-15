@@ -1,0 +1,56 @@
+<div id="body" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <article>
+                <h2>{{post?.title}}</h2>
+                
+                <div class="row">
+                    <div class="group1 col-sm-6 col-md-6">
+                        <span class="glyphicon glyphicon-folder-open"></span> 
+                        <a href="#">Signs</a>
+                            <span class="glyphicon glyphicon-bookmark"></span> <a href="#">Aries</a>,
+                        <a href="#">Fire</a>, <a href="#">Mars</a>
+                    </div>
+                    <div class="group2 col-sm-6 col-md-6">
+                        <span class="glyphicon glyphicon-pencil"></span> <a href="singlepost.html#comments">20 Comments</a>
+                        <span class="glyphicon glyphicon-time"></span> {{post?.posted_date | date :  "dd.MM.y"}}
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <img [src]="imgSrc">
+                
+                <br />
+                <p class="lead">{{post?.text}}</p>
+                <p class="text-right" >
+                    Author: {{post?.author}}
+                </p>
+                
+                <hr>
+            </article>
+
+            <br>
+            <h2>Comments</h2>
+            <div class="comment-list">
+                <article *ngFor="let comment of commentCollection">
+                    <footer>
+                        <img [src]="avatarSrc" class="avatar avatar-50 photo" height="50" width="50">
+                        <cite><b>{{comment.author}}</b></cite>
+                            <span class="comment-date">
+                                <span class="glyphicon glyphicon-time"></span> 
+                                {{comment.posted_date | date :  "dd.MM.y"}}
+                            </span>
+                    </footer>
+                    <div class="comment-content">
+                        <p>{{comment.description}}</p>
+                    </div>
+                    <br>
+                </article>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <sidebar></sidebar>
+        </div>
+    </div>
+</div>

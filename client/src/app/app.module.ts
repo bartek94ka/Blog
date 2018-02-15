@@ -25,6 +25,7 @@ import { NewPostComponent } from './components/newpost/newpost.component';
 import { WorkspaceComponent } from './components/workspace/workspace.component';
 import { PostListComponent } from './components/postlist/postlist.component';
 import { PostCategoryComponent } from './components/postcategory/postcategory.component';
+import { PostDetailsComponent } from './components/postdetails/postdetails.component';
 
 import { PostService } from './services/post.servcie';
 import { LoginService } from './services/session/login.service';
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
   { path: 'workspace', component: WorkspaceComponent },
   { path: 'workspace/newpost', component: NewPostComponent },
   { path: 'workspace/postlist', component: PostListComponent },
-  { path: 'postcategory/:id', component : PostCategoryComponent }
+  { path: 'postcategory/:id', component : PostCategoryComponent },
+  { path: 'postdetails/:id', component: PostDetailsComponent }
 ]
 
 @NgModule({
@@ -68,7 +70,8 @@ const appRoutes: Routes = [
     WorkspaceComponent,
     NewPostComponent,
     PostListComponent,
-    PostCategoryComponent
+    PostCategoryComponent,
+    PostDetailsComponent
   ],
   imports: [
     BrowserModule,

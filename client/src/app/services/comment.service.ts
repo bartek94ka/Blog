@@ -19,11 +19,11 @@ export class CommentService {
     }
     
     getCommentByPostId(postId){
-        return this.http.get(endpoint + "comment/post/" + postId).map(response=>response.json())
+        return this.http.get(endpoint + "comment/post/" + postId + "/").map(response=>response.json())
     }
 
     getById(commentId){
-        return this.http.get(endpoint + "comment/" + commentId).map(response=>response.json())
+        return this.http.get(endpoint + "comment/" + commentId  + "/").map(response=>response.json())
     }
 
     // deleteComment(commentId){
