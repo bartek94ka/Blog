@@ -3,6 +3,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { PostService } from './../../services/post.servcie'
 import { CategoryService } from './../../services/category.service'
 import { forEach } from '@angular/router/src/utils/collection';
+import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { forEach } from '@angular/router/src/utils/collection';
   styleUrls: ['./newpost.component.css']
 })
 export class NewPostComponent {
-    constructor(private _cookieService: CookieService, private _postService: PostService, private _categoryService: CategoryService){
+    constructor(private _cookieService: CookieService, private _postService: PostService, 
+        private _categoryService: CategoryService, private _userService: UserService){
         this.cookieValue = this._cookieService.get('BlogToken');
     };
     private cookieValue = "";
@@ -19,12 +21,13 @@ export class NewPostComponent {
     textText : string = ""
     categoriesCollection : any;
     selectedCategories: any;
+    private user: any;
 
     ngOnInit(){
         this._categoryService.getAll().subscribe(data=>{
             this.categoriesCollection = data;
-        })
-        console.log(this.categoriesCollection);
+        });
+        this.getCurrentLoggedUser();
     }
 
     addPostEvent(event){
@@ -34,12 +37,14 @@ export class NewPostComponent {
         }
         // category must be choosen
         let today = this.getCurrentDate();
+        let author = this.user.first_name + ' ' + this.user.last_name;
+        console.log(author);
         let body = {
             "title":  this.titleText,
             "text": this.textText,
             "categories": categories,
             "posted_date": String(today),
-            "author": "Jan Wesoły"
+            "author": author
         }
         console.log(body);
         this._postService.create(body).subscribe(data=>{
@@ -53,4 +58,10 @@ export class NewPostComponent {
         return today;
     }
 
+    private getCurrentLoggedUser(){
+        this._userService.getLoggedUserData(this.cookieValue).subscribe(data=>{
+            console.log(data);
+            this.user =  data;
+        });
+    }
 }

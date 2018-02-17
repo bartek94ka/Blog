@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^api/post/delete/(?P<pk>[0-9]+)/$', PostViews.delete_post),
     url(r'^api/post/update/(?P<pk>[0-9]+)/$', PostViews.update_post),
     url(r'^api/post/page/(?P<page>[0-9]+)/$', PostViews.get_page_posts),
-    url(r'^api/post/category/(?P<pk>[0-9]+)/$', PostViews.get_posts_by_comment_id),
+    url(r'^api/post/category/(?P<pk>[0-9]+)/$', PostViews.get_posts_by_cattegory_id),
     url(r'^api/category/$', CategoryViews.add_new_category),
     url(r'^api/category/all/$', CategoryViews.get_all_categories),
     url(r'^api/category/(?P<pk>[0-9]+)/$', CategoryViews.get_category),

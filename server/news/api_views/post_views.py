@@ -12,7 +12,7 @@ class PostViews():
     def get_all_posts(request):
         if request.method == 'GET':
             try:
-                posts_list = Posts.objects.all()
+                posts_list = Posts.objects.all().order_by('-posted_date')
             except:
                 return HttpResponse(status=404)
             serializer = PostSerializer(posts_list, many=True)
@@ -20,10 +20,10 @@ class PostViews():
         return HttpResponse(status=404)
 
     @csrf_exempt
-    def get_posts_by_comment_id(request, pk):
+    def get_posts_by_cattegory_id(request, pk):
         if request.method == 'GET':
             try:
-                posts_list = Posts.objects.filter(categories__id__in=pk)
+                posts_list = Posts.objects.filter(categories__id__in=pk).order_by('-posted_date')
             except:
                 return HttpResponse(status=404)  
             serializer = PostSerializer(posts_list, many=True)
@@ -36,11 +36,12 @@ class PostViews():
         List all code snippets, or create a new snippet.
         """
         if request.method == 'GET':
-            post_list = Posts.objects.all()
+            post_list = Posts.objects.all().order_by('-posted_date')
             paginator = Paginator(post_list, 2)
             posts = paginator.get_page(page)
             serializer = PostSerializer(posts, many=True)
             return JsonResponse(serializer.data, safe=False)
+        return HttpResponse(status=404)
 
     @csrf_exempt
     def get_posts_count(request):
