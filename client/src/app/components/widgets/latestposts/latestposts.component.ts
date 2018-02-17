@@ -1,10 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PostService } from '../../../services/post.servcie';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'latestposts',
   templateUrl: './latestposts.component.html'
-//   styleUrls: ['./app.component.css']
 })
 export class LatestPostsComponent {
-  title = 'Angular';
+  
+  constructor(private _postService: PostService, private _router : Router){
+    this.GetPostList();
+  }
+
+  postCollection : any;
+
+
+  private GetPostList(){
+    this._postService.getByPage(1).subscribe(data=>{
+        this.postCollection = data;
+        console.log(this.postCollection);
+    });
+  }
+
+  goToPostDetails(postId){
+    this._router.navigate(['postdetails/' + postId + '/']);
+  }
 }
