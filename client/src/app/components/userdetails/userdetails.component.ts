@@ -1,14 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from './../../services/user.service' 
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'userdetails',
   templateUrl: './userdetails.component.html'
-//   styleUrls: ['./app.component.css']
 })
 export class UserDetailsComponent {
-    constructor(private _userService: UserService, private _cookieService: CookieService){}
+    
+    constructor(private _userService: UserService, private _cookieService: CookieService, private _router : Router){}
+    
     private cookieValue : string = ""
     private req: any;
     emailText : string = ""
@@ -32,15 +34,9 @@ export class UserDetailsComponent {
     updateEvent(event){
         this.user.first_name = this.firstNameText;
         this.user.last_name = this.lastNameText;
-        console.log(this.user)
         this.req = this._userService.updateUserData(this.cookieValue, this.user).
         subscribe(data=>{
-            console.log(data)
-        //   this._cookieService.set( 'BlogToken', data.token );
-        //   this.cookieValue = this._cookieService.get('BlogToken');
-        //   if( this.cookieValue != ""){
-        //     this._globalEventsManager.showNavBar(true);
-        //     this._router.navigate([''])
+            this._router.navigate(['workspace']);
           })
       }
 

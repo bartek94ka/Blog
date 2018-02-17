@@ -48,7 +48,9 @@ export class NewPostComponent {
         }
         console.log(body);
         this._postService.create(body).subscribe(data=>{
-            console.log(data);
+            this.titleText = "";
+            this.textText = "";
+            categories = null;
         });
     }
 

@@ -10,12 +10,13 @@ const endpoint = 'http://127.0.0.1:8000/api/'
 export class RegisterService {
     constructor(private http: Http){}
 
-    get(username, email, password){
+    registerUser(username, email, password){
         let body = {
-            "username": "admin",
-            "email": "user2@blog.pl",
-            "password": "qazwsx1234"
+            "username": username,
+            "email": email,
+            "password": password
         }
-        return this.http.post(endpoint + "signup/", body).map(response=>response.json())
+        console.log(body);
+        return this.http.post(endpoint + "signup/", body);
     }
 }

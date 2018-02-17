@@ -17,16 +17,29 @@ export class RegisterComponent {
   nickText : string = ""
   passwordText : string = ""
   confirmPasswordText : string = ""
-
-  constructor(private _registerservice: RegisterService, private _loginservice: LoginService, private _cookieService: CookieService, private _router: Router, private _globalEventsManager: GlobalEventsManager){}
+ 
+  constructor(private _registerservice: RegisterService, private _loginservice: LoginService, 
+    private _cookieService: CookieService, private _router: Router, private _globalEventsManager: GlobalEventsManager){}
 
 
   registerEvent(event){
+    console.log(this.nickText);
+    console.log(this.emailText);
+    console.log(this.passwordText);
     //validation of passwords
-    this.req = this._registerservice.get(this.nickText, this.emailText, this.passwordText)
-    .subscribe(data =>{
-      console.log("cocs");
-    });
+    if(this.passwordText == this.confirmPasswordText){
+      this.req = this._registerservice.registerUser(this.nickText, this.emailText, this.passwordText)
+      .subscribe(data =>{
+        if(data.status == 200){
+          this._loginservice.get(this.nickText, this.passwordText).subscribe(loggedData=>{
+            if(loggedData.status == 200){
+              this._router.navigate(['userdetails']);
+            }
+          })
+        }
+      });
+    }
+    
     // .map(profile => {
     //   console.log("cos robi")
     // });
@@ -45,6 +58,5 @@ export class RegisterComponent {
       // }, 
       // () => {});
     // });
-    console.log("Submit register");
   }
 }

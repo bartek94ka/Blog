@@ -42,7 +42,6 @@ export class UserService {
             })
         })
         var url = endpoint + "user/update/" + user.id + "/"
-        return this.http.put(url, user, options).
-        map(response=>response.json())
+        return this.http.put(url, user, options)
     }
 }
