@@ -36,7 +36,7 @@ export class UserDetailsComponent {
         this.user.last_name = this.lastNameText;
         this.req = this._userService.updateUserData(this.cookieValue, this.user).
         subscribe(data=>{
-            this._router.navigate(['workspace']);
+            this._router.navigate(['home']);
           })
       }
 

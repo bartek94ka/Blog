@@ -31,10 +31,16 @@ export class RegisterComponent {
       this.req = this._registerservice.registerUser(this.nickText, this.emailText, this.passwordText)
       .subscribe(data =>{
         if(data.status == 200){
-          this._loginservice.get(this.nickText, this.passwordText).subscribe(loggedData=>{
-            if(loggedData.status == 200){
+          this._loginservice.login(this.nickText, this.passwordText).subscribe(loggedData=>{
+            //if(loggedData.status == 200){
+              console.log(loggedData.token)
+              this._cookieService.set( 'BlogToken', loggedData.token );
+              this.cookieValue = this._cookieService.get('BlogToken');
+              if( this.cookieValue != ""){
+                this._globalEventsManager.showNavBar(true);
+              }
               this._router.navigate(['userdetails']);
-            }
+            //}
           })
         }
       });

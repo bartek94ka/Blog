@@ -11,8 +11,8 @@ from rest_framework.authtoken import views
 import json
 
 class SessionViews():
-    #@csrf_exempt
-    @api_view(['POST'])
+    @csrf_exempt
+    #@api_view(['POST'])
     def signup(request):
         if request.method == 'POST':
             try:

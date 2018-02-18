@@ -9,14 +9,17 @@ import { GlobalEventsManager } from "./../../../GlobalEventsManager";
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
-  cookieValue = ""
-  private req: any;
-  emailText : string = ""
-  passwordText : string = ""
+
   constructor(private _service: LoginService, private _cookieService: CookieService, private _router: Router, private _globalEventsManager: GlobalEventsManager){}
 
+  cookieValue = "";
+  private req: any;
+  userNameText : string = "";
+  emailText : string = "";
+  passwordText : string = "";
+
   loginEvent(event){
-    this.req = this._service.get(this.emailText, this.passwordText).subscribe(data=>{
+    this.req = this._service.login(this.userNameText, this.passwordText).subscribe(data=>{
       console.log(data.token)
       this._cookieService.set( 'BlogToken', data.token );
       this.cookieValue = this._cookieService.get('BlogToken');

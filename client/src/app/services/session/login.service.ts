@@ -10,12 +10,13 @@ const endpoint = 'http://127.0.0.1:8000/api/'
 export class LoginService {
     constructor(private http: Http){}
 
-    get(username, password){
+    login(username, password){
         console.log("login")
         let body = {
-            "username": "admin",
-            "password": "qazwsx1234"
+            "username": username,
+            "password": password
         }
+        console.log(body);
         return this.http.post(endpoint + "api-token-auth/", body).map(response=>response.json())
     }
 }
