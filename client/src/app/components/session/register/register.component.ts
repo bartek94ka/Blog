@@ -14,7 +14,7 @@ export class RegisterComponent {
   private req: any;
   cookieValue = ""
   emailText : string = ""
-  nickText : string = ""
+  userNameText : string = ""
   passwordText : string = ""
   confirmPasswordText : string = ""
  
@@ -23,46 +23,21 @@ export class RegisterComponent {
 
 
   registerEvent(event){
-    console.log(this.nickText);
-    console.log(this.emailText);
-    console.log(this.passwordText);
     //validation of passwords
     if(this.passwordText == this.confirmPasswordText){
-      this.req = this._registerservice.registerUser(this.nickText, this.emailText, this.passwordText)
+      this.req = this._registerservice.registerUser(this.userNameText, this.emailText, this.passwordText)
       .subscribe(data =>{
         if(data.status == 200){
-          this._loginservice.login(this.nickText, this.passwordText).subscribe(loggedData=>{
-            //if(loggedData.status == 200){
-              console.log(loggedData.token)
-              this._cookieService.set( 'BlogToken', loggedData.token );
-              this.cookieValue = this._cookieService.get('BlogToken');
-              if( this.cookieValue != ""){
-                this._globalEventsManager.showNavBar(true);
-              }
-              this._router.navigate(['userdetails']);
-            //}
+          this._loginservice.login(this.userNameText, this.passwordText).subscribe(loggedData=>{
+            this._cookieService.set( 'BlogToken', loggedData.token );
+            this.cookieValue = this._cookieService.get('BlogToken');
+            if( this.cookieValue != ""){
+              this._globalEventsManager.showNavBar(true);
+            }
+            this._router.navigate(['userdetails']);
           })
         }
       });
     }
-    
-    // .map(profile => {
-    //   console.log("cos robi")
-    // });
-    // .subscribe(data=>{
-
-      // this.req = this._loginservice.get(this.emailText, this.passwordText).subscribe(data=>{
-      //   console.log(data.token)
-      //   this._cookieService.set( 'BlogToken', data.token );
-      //   this.cookieValue = this._cookieService.get('BlogToken');
-      //   if( this.cookieValue != ""){
-      //     this._globalEventsManager.showNavBar(true);
-      //     this._router.navigate([''])
-      //   }
-      // },error => {
-
-      // }, 
-      // () => {});
-    // });
   }
 }

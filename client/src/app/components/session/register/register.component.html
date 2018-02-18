@@ -2,14 +2,16 @@
     <label for="email">Email</label>
     <input type="email" [value]="emailText" (input)="emailText = $event.target.value" class="form-control" name="email" placeholder="Enter email">
     
-    <label for="name">Nick</label>
-    <input type="text" [value]="nickText" (input)="nickText = $event.target.value" class="form-control" name="nick" placeholder="Enter nick">
+    <label for="name">Username</label>
+    <input type="text" [value]="userNameText" (input)="userNameText = $event.target.value" class="form-control" name="nick" placeholder="Enter nick">
 
     <label for="name">Password</label>
     <input type="password" [value]="passwordText" (input)="passwordText = $event.target.value" class="form-control" name="password" placeholder="Enter password">
 
     <label for="name">Confirm Password</label>
     <input type="password" [value]="confirmPasswordText" (input)="confirmPasswordText = $event.target.value" class="form-control" name="confirmpassword" placeholder="Confirm password">
+    
+    <br>
     
     <input type="submit" value="Register" class="btn btn-primary center-block" (click)="registerEvent($event)" />
 </form>

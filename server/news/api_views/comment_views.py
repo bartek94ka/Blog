@@ -39,13 +39,28 @@ class CommentViews():
         Retrieve, update or delete a code comment.
         """
         try:
-            comment_list = Comments.objects.filter(post=pk)#.filter(post=pk)
+            comment_list = Comments.objects.filter(post=pk)
         except Comments.DoesNotExist:
             return HttpResponse(status=404)
 
         if request.method == 'GET':
             serializer = CommentsSerializer(comment_list, many=True)
             return JsonResponse(serializer.data, safe=False)
+    
+    @csrf_exempt
+    def get_post_all_comments_count(request, pk):
+        """
+        Retrieve, update or delete a code comment.
+        """
+        try:
+            commentCount = Comments.objects.filter(post=pk).count()
+        except Comments.DoesNotExist:
+            return HttpResponse(status=404)
+
+        if request.method == 'GET':
+            return JsonResponse(commentCount, safe=False)
+        else:
+            return JsonResponse(commentCount, safe=False)
 
     @csrf_exempt
     def get_all_comments(request):

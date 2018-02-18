@@ -11,19 +11,23 @@ export class CommentService {
     constructor(private http: Http){}
 
     create(body){
-        return this.http.post(endpoint + "comment/", body).map(response=>response.json())
+        return this.http.post(endpoint + "comment/", body);
     }
 
     getAll(){
-        return this.http.get(endpoint + "comment/all/").map(response=>response.json())
+        return this.http.get(endpoint + "comment/all/").map(response=>response.json());
     }
     
     getCommentByPostId(postId){
-        return this.http.get(endpoint + "comment/post/" + postId + "/").map(response=>response.json())
+        return this.http.get(endpoint + "comment/post/" + postId + "/").map(response=>response.json());
+    }
+
+    getCommentCountByPostId(postId){
+        return this.http.get(endpoint + "comment/count/post/" + postId + "/").map(response=>response.json());
     }
 
     getById(commentId){
-        return this.http.get(endpoint + "comment/" + commentId  + "/").map(response=>response.json())
+        return this.http.get(endpoint + "comment/" + commentId  + "/").map(response=>response.json());
     }
 
     // deleteComment(commentId){

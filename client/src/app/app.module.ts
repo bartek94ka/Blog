@@ -26,6 +26,7 @@ import { WorkspaceComponent } from './components/workspace/workspace.component';
 import { PostListComponent } from './components/postlist/postlist.component';
 import { PostCategoryComponent } from './components/postcategory/postcategory.component';
 import { PostDetailsComponent } from './components/postdetails/postdetails.component';
+import { EditPostComponent } from './components/editpost/editpost.component';
 
 import { PostService } from './services/post.servcie';
 import { LoginService } from './services/session/login.service';
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
   { path: 'workspace', component: WorkspaceComponent },
   { path: 'workspace/newpost', component: NewPostComponent },
   { path: 'workspace/postlist', component: PostListComponent },
+  { path: 'editpost/:id', component: EditPostComponent },
   { path: 'postcategory/:id', component : PostCategoryComponent },
   { path: 'postdetails/:id', component: PostDetailsComponent }
 ]
@@ -69,6 +71,7 @@ const appRoutes: Routes = [
     UserDetailsComponent,
     WorkspaceComponent,
     NewPostComponent,
+    EditPostComponent,
     PostListComponent,
     PostCategoryComponent,
     PostDetailsComponent

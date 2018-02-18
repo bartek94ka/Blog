@@ -11,7 +11,7 @@ export class PostService {
     constructor(private http: Http){}
 
     create(body){
-        return this.http.post(endpoint + "post/", body).map(response=>response.json)
+        return this.http.post(endpoint + "post/", body).map(response=>response.json);
     }
 
     getAllPosts(){
@@ -31,7 +31,7 @@ export class PostService {
     }
 
     updatePostById(postId, body){
-        return this.http.put(endpoint + "post/update/" + postId, body).map(response=>response.json())
+        return this.http.put(endpoint + "post/update/" + postId + "/", body);
     }
 
     getByPage(pageNumber){

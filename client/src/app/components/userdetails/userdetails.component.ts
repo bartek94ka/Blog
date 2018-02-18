@@ -13,17 +13,17 @@ export class UserDetailsComponent {
     
     private cookieValue : string = ""
     private req: any;
-    emailText : string = ""
-    nickText : string = ""
-    firstNameText : string = ""
-    lastNameText : string = ""
-    user;
+    emailText : string = "";
+    nickText : string = "";
+    firstNameText : string = "";
+    lastNameText : string = "";
+    user : any;
 
     ngOnInit(){
         this.cookieValue = this._cookieService.get('BlogToken');
         this.req = this._userService.getLoggedUserData(this.cookieValue).subscribe(data=>{
             this.user = data;
-            console.log(this.user)
+            console.log(this.user.email)
             this.emailText = data.email;
             this.nickText = data.username;
             this.firstNameText = data.first_name;

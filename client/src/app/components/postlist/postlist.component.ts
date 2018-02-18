@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { PostService } from '../../services/post.servcie';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { PostService } from '../../services/post.servcie';
   styleUrls: ['./postlist.component.css']
 })
 export class PostListComponent {
-    constructor(private _cookieService: CookieService, private _postService: PostService){
+    constructor(private _cookieService: CookieService, private _postService: PostService,
+        private _router: Router){
         this.cookieValue = this._cookieService.get('BlogToken');
     };
     private cookieValue = "";
@@ -47,14 +49,14 @@ export class PostListComponent {
 
     EditPostEvent(event, postId){
         console.log("PostEdit: " + postId);
-        
+        this._router.navigate(['editpost/' + postId]);
     }
 
     RemovePostEvent(event, postId){
         console.log("Remove Post: " + postId);
         this._postService.deletePostById(postId).subscribe(data=>{
             this.GetPostList();
-        })
+        });
     }
 
     private GetPostList(){

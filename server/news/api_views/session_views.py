@@ -27,3 +27,7 @@ class SessionViews():
             except ValueError:
                 print(ValueError.value)
         return HttpResponse(status=400)
+
+    # @csrf_exempt
+    # def facebookSingIn(request):
+    #     if request.method == 

@@ -1,0 +1,9 @@
+<form class="center-block" role="form" style="max-width: 300px">
+    <label for="name">Title</label>
+    <input type="text" [(ngModel)]="titleText" class="form-control" name="title" placeholder="Enter title">
+    <br>
+    <label for="name">Text</label>
+    <textarea name="Text1" [(ngModel)]="textText" cols="40" rows="5" class="form-control" placeholder="Enter text"></textarea>
+    <br>
+    <input type="submit" value="Update post" class="btn btn-primary center-block" (click)="updatePostEvent($event)"/>
+</form>

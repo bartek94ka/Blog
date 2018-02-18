@@ -1,6 +1,6 @@
 <form class="center-block" role="form" style="max-width: 300px">
     <label for="email">Email</label>
-    <input [value]="emailText" (input)="emailText = $event.target.value" type="email" class="form-control" name="email" placeholder="Enter email">
+    <input readonly type="email" [value]="emailText" (input)="emailText = $event.target.value" class="form-control" name="email" placeholder="Enter email">
     
     <label for="name">Nick</label>
     <input readonly type="text" [value]="nickText" (input)="nickText = $event.target.value" class="form-control" name="nick" placeholder="Enter nick">
@@ -10,6 +10,8 @@
     
     <label for="name">Last Name</label>
     <input type="text" [value]="lastNameText" (input)="lastNameText = $event.target.value" class="form-control" name="lastName" placeholder="Enter last name">
+    
+    <br>
     
     <input type="submit" value="Save" class="btn btn-primary center-block" (click)="updateEvent($event)"/>
 </form>

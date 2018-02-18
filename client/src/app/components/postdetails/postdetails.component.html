@@ -11,8 +11,8 @@
                             <span class="glyphicon glyphicon-bookmark"></span> <a href="#">Aries</a>,
                         <a href="#">Fire</a>, <a href="#">Mars</a>
                     </div>
-                    <div class="group2 col-sm-6 col-md-6">
-                        <span class="glyphicon glyphicon-pencil"></span> <a href="singlepost.html#comments">20 Comments</a>
+                    <div class="group2 col-sm-6 col-md-6" style="text-align: right">
+                        <span class="glyphicon glyphicon-pencil"></span> <a>{{post?.comments.length}} Comments</a>
                         <span class="glyphicon glyphicon-time"></span> {{post?.posted_date | date :  "dd.MM.y"}}
                     </div>
                 </div>
@@ -32,6 +32,15 @@
 
             <br>
             <h2>Comments</h2>
+            <div>
+                <h3>Add comment</h3>
+                <textarea name="descritpion" [(ngModel)]="descriptionText" cols="40" rows="5" class="form-control" placeholder="Enter text"></textarea>
+                <br>
+                <input type="submit" value="Add comment" class="btn btn-primary center-block" (click)="addCommentEvent($event)"/>
+            </div>
+
+            <br><br>
+            
             <div class="comment-list">
                 <article *ngFor="let comment of commentCollection">
                     <footer>
