@@ -23,7 +23,6 @@ export class UserDetailsComponent {
         this.cookieValue = this._cookieService.get('BlogToken');
         this.req = this._userService.getLoggedUserData(this.cookieValue).subscribe(data=>{
             this.user = data;
-            console.log(this.user.email)
             this.emailText = data.email;
             this.nickText = data.username;
             this.firstNameText = data.first_name;
@@ -32,13 +31,12 @@ export class UserDetailsComponent {
     }
 
     updateEvent(event){
+        this.user.email = this.emailText;
         this.user.first_name = this.firstNameText;
         this.user.last_name = this.lastNameText;
         this.req = this._userService.updateUserData(this.cookieValue, this.user).
         subscribe(data=>{
             this._router.navigate(['home']);
-          })
-      }
-
-    ngOnDestroy(){}
+        })
+    }
 }

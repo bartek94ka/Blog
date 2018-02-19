@@ -7,17 +7,17 @@ class NewPostSerializer(serializers.ModelSerializer):
         model = Posts
         fields = ('title', 'text', 'categories', 'posted_date', 'author')
 
-class PostSerializer(serializers.ModelSerializer):
-    comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-
-    class Meta:
-        model = Posts
-        fields = ('id', 'title', 'text', 'categories', 'posted_date', 'author', 'comments')
-
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('id', 'name', 'icon', 'created')
+
+class PostSerializer(serializers.ModelSerializer):
+    comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    categories = CategorySerializer(many=True, read_only=True)
+    class Meta:
+        model = Posts
+        fields = ('id', 'title', 'text', 'categories', 'posted_date', 'author', 'comments')
 
 class NewCommentSerializer(serializers.ModelSerializer):
     class Meta:

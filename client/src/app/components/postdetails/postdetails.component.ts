@@ -11,8 +11,8 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./postdetails.component.css']
 })
 export class PostDetailsComponent {
-  constructor(private _postService: PostService, private _commentService: CommentService, private route: ActivatedRoute,
-  private _userService : UserService, private _cookieService : CookieService){
+  constructor(private _postService: PostService, private _commentService: CommentService, private _activatedRoute: ActivatedRoute,
+  private _userService : UserService, private _cookieService : CookieService, private _router: Router){
     this.cookieValue = this._cookieService.get('BlogToken');
   }
 
@@ -26,7 +26,7 @@ export class PostDetailsComponent {
   descriptionText: string;
 
   ngOnInit(){
-    this.route.params.subscribe(params => {
+    this._activatedRoute.params.subscribe(params => {
         this.postId = +params['id'];
     });
     this._postService.getById(this.postId).subscribe(data=>{
@@ -34,10 +34,6 @@ export class PostDetailsComponent {
       this.post.posted_date = data.posted_date;
       
     });
-    // this._commentService.getCommentByPostId(this.postId).subscribe(data=>{
-    //     this.commentCollection = data;
-    //     console.log(this.commentCollection);
-    // })
     this.getCommentList(this.postId);
     this.getCurrentLoggedUser();
     this.imgSrc = "assets/images/post_image.png";
@@ -58,7 +54,6 @@ export class PostDetailsComponent {
 
   private getCurrentLoggedUser(){
     this._userService.getLoggedUserData(this.cookieValue).subscribe(data=>{
-        console.log(data);
         this.user =  data;
     });
   }
@@ -77,4 +72,9 @@ export class PostDetailsComponent {
       this.getCommentList(this.postId);
     });
   }
+
+  goToPostByCategoryId(categoryId){
+    this._router.navigate(['postcategory/' + categoryId + '/']);
+  }
+
 }

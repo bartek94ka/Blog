@@ -27,7 +27,7 @@ export class PostService {
     }
 
     deletePostById(postId){
-        return this.http.delete(endpoint + "post/delete/" + postId + "/").map(response=>response.json())
+        return this.http.delete(endpoint + "post/delete/" + postId + "/");
     }
 
     updatePostById(postId, body){
@@ -35,12 +35,6 @@ export class PostService {
     }
 
     getByPage(pageNumber){
-        // var options = new RequestOptions({
-        //     headers: new Headers({
-        //         'Origin': 'http://localhost:4200',
-        //         'Content-Type': 'application/json'
-        //     })
-        // })
         return this.http.get(endpoint + "post/page/" + pageNumber + "/").map(response=>response.json())
     }
 

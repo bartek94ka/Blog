@@ -18,7 +18,6 @@ export class LatestPostsComponent {
   private GetPostList(){
     this._postService.getByPage(1).subscribe(data=>{
         this.postCollection = data;
-        console.log(this.postCollection);
     });
   }
 

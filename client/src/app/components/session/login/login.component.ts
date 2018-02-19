@@ -20,7 +20,6 @@ export class LoginComponent {
 
   loginEvent(event){
     this.req = this._service.login(this.userNameText, this.passwordText).subscribe(data=>{
-      console.log(data.token)
       this._cookieService.set( 'BlogToken', data.token );
       this.cookieValue = this._cookieService.get('BlogToken');
       if( this.cookieValue != ""){
@@ -29,6 +28,4 @@ export class LoginComponent {
       }
   });
   }
-  ngOnInit(){}
-  ngOnDestroy(){}
 }

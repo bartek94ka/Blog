@@ -33,7 +33,6 @@ export class PostListComponent {
     PrevPostPageEvent(event){
         if(this.pageNumber > 1){
             this.pageNumber -= 1;
-            console.log("Prev - page Nr: " + this.pageNumber);
             this.GetPostList();
         }
     }
@@ -42,18 +41,15 @@ export class PostListComponent {
         var maxPage = this.postCount / this.postPerPage;
         if(this.pageNumber < maxPage){
             this.pageNumber += 1;
-            console.log("Next - page Nr: " + this.pageNumber);
             this.GetPostList();
         }
     }
 
     EditPostEvent(event, postId){
-        console.log("PostEdit: " + postId);
         this._router.navigate(['editpost/' + postId]);
     }
 
     RemovePostEvent(event, postId){
-        console.log("Remove Post: " + postId);
         this._postService.deletePostById(postId).subscribe(data=>{
             this.GetPostList();
         });
@@ -62,7 +58,6 @@ export class PostListComponent {
     private GetPostList(){
         this._postService.getByPage(this.pageNumber).subscribe(data=>{
             this.postCollection = data;
-            // console.log(data);
         });
     }
 }

@@ -14,7 +14,4 @@ export class WorkspaceComponent {
     private cookieValue = "";
     private req: any;
 
-    // addPostEvent(event){
-    //     // this.req = this.
-    // }
 }

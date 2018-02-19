@@ -10,6 +10,7 @@ const endpoint = 'http://127.0.0.1:8000/api/'
 @Injectable()
 export class UserService {
     constructor(private http: Http, private httpClient: HttpClient){}
+    
     private tokenValue : string = ""
 
     getAll(){
@@ -22,7 +23,6 @@ export class UserService {
 
     getLoggedUserData(token){
         this.tokenValue = "Token " + token
-        console.log("get logged user data")
         var options = new RequestOptions({
             headers: new Headers({
                 'Authorization': this.tokenValue,

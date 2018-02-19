@@ -11,15 +11,14 @@ import { PostService } from '../../services/post.servcie';
 })
 
 export class PostCategoryComponent {
-  constructor(private _postService : PostService, private route: ActivatedRoute){}
+  constructor(private _postService : PostService, private _activatedRoute: ActivatedRoute, private _router: Router){}
   
-  // public static updateUserStatus: Subject<boolean> = new Subject();
   postCollection : any;
   cattegoryId : number; 
   imgSrc : string;
   
   ngOnInit(){
-    this.route.params.subscribe(params => {
+    this._activatedRoute.params.subscribe(params => {
       this.cattegoryId = +params['id'];
       console.log(this.cattegoryId);
     });
@@ -27,5 +26,9 @@ export class PostCategoryComponent {
       this.postCollection = data;
       this.imgSrc = "assets/images/post_image.png";
     });
+  }
+
+  goToPostByCategoryId(categoryId){
+    this._router.navigate(['postcategory/' + categoryId + '/']);
   }
 }

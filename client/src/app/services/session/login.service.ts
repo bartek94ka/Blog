@@ -11,12 +11,10 @@ export class LoginService {
     constructor(private http: Http){}
 
     login(username, password){
-        console.log("login")
         let body = {
             "username": username,
             "password": password
         }
-        console.log(body);
         return this.http.post(endpoint + "api-token-auth/", body).map(response=>response.json())
     }
 }

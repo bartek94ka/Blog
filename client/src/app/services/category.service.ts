@@ -19,10 +19,10 @@ export class CategoryService {
     }
 
     updateCategory(categoryId, body){
-        return this.http.put(endpoint + "category/update/" + categoryId, body).map(response=>response.json())
+        return this.http.put(endpoint + "category/update/" + categoryId, body);
     }
 
     deleteCategory(categoryId){
-        return this.http.delete(endpoint + "category/delete/" + categoryId).map(response=>response.json())
+        return this.http.delete(endpoint + "category/delete/" + categoryId);
     }
 }

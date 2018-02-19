@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from rest_framework.parsers import JSONParser
 from news.serializers import PostSerializer, NewPostSerializer
 from news.models import Posts
+import logging
 
 class PostViews():
 

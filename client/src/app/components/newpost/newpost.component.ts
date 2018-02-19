@@ -38,7 +38,6 @@ export class NewPostComponent {
         // category must be choosen
         let today = this.getCurrentDate();
         let author = this.user.first_name + ' ' + this.user.last_name;
-        console.log(author);
         let body = {
             "title":  this.titleText,
             "text": this.textText,
@@ -62,7 +61,6 @@ export class NewPostComponent {
 
     private getCurrentLoggedUser(){
         this._userService.getLoggedUserData(this.cookieValue).subscribe(data=>{
-            console.log(data);
             this.user =  data;
         });
     }

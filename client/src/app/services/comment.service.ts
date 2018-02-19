@@ -31,6 +31,6 @@ export class CommentService {
     }
 
     // deleteComment(commentId){
-    //     return this.http.delete(endpoint + "comment/delete/" + commentId).map(response=>response.json())
+    //     return this.http.delete(endpoint + "comment/delete/" + commentId);
     // }
 }
