@@ -30,7 +30,7 @@
 
             <br>
             <h2>Comments</h2>
-            <div>
+            <div *ngIf="isAuthenticated == true">
                 <h3>Add comment</h3>
                 <textarea name="descritpion" [(ngModel)]="descriptionText" cols="40" rows="5" class="form-control" placeholder="Enter text"></textarea>
                 <br>

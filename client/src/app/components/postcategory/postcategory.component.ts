@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CategoryService } from './../../services/category.service';
 import { PostService } from '../../services/post.servcie';
@@ -10,25 +10,36 @@ import { PostService } from '../../services/post.servcie';
   styleUrls: ['./postcategory.component.css']
 })
 
-export class PostCategoryComponent {
-  constructor(private _postService : PostService, private _activatedRoute: ActivatedRoute, private _router: Router){}
+export class PostCategoryComponent implements OnInit {
+  constructor(private _postService : PostService, private _activatedRoute: ActivatedRoute, private _router: Router){
+    this._activatedRoute.url.subscribe(url=>{
+      this.getPostsByCattegory();
+    })
+  }
   
-  postCollection : any;
-  cattegoryId : number; 
-  imgSrc : string;
+  postCollection: any;
+  cattegoryId: number; 
+  imgSrc: string;
   
   ngOnInit(){
+    this.getPostsByCattegory();
+  }
+
+  ngOnDestroy(){
+
+  }
+
+  goToPostByCategoryId(categoryId){
+    this._router.navigate(['postcategory/' + categoryId + '/']);
+  }
+
+  private getPostsByCattegory(){
     this._activatedRoute.params.subscribe(params => {
       this.cattegoryId = +params['id'];
-      console.log(this.cattegoryId);
     });
     this._postService.getPostsByCategoryId(this.cattegoryId).subscribe(data=>{
       this.postCollection = data;
       this.imgSrc = "assets/images/post_image.png";
     });
-  }
-
-  goToPostByCategoryId(categoryId){
-    this._router.navigate(['postcategory/' + categoryId + '/']);
   }
 }

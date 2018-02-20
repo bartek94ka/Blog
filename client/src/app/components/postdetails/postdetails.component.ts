@@ -14,6 +14,15 @@ export class PostDetailsComponent {
   constructor(private _postService: PostService, private _commentService: CommentService, private _activatedRoute: ActivatedRoute,
   private _userService : UserService, private _cookieService : CookieService, private _router: Router){
     this.cookieValue = this._cookieService.get('BlogToken');
+    this._activatedRoute.url.subscribe(url=>{
+      this.getPostDetails();
+    })
+    if(this.cookieValue != "" ){
+      this.isAuthenticated = true;
+    }
+    else{
+      this.isAuthenticated = false;
+    }
   }
 
   private cookieValue: string;
@@ -24,10 +33,34 @@ export class PostDetailsComponent {
   imgSrc: string;
   avatarSrc: string;
   descriptionText: string;
+  isAuthenticated: boolean = false;
 
   ngOnInit(){
+    this.getPostDetails();
+  }
+
+  addCommentEvent(event){
+    let today = this.getCurrentDate();
+    let author = this.user.first_name + ' ' + this.user.last_name;
+    let body = {
+      "description":  this.descriptionText,
+      "post": this.postId,
+      "posted_date": String(today),
+      "author": author
+    }
+    this._commentService.create(body).subscribe(data=>{
+      this.descriptionText = "";
+      this.getCommentList(this.postId);
+    });
+  }
+
+  goToPostByCategoryId(categoryId){
+    this._router.navigate(['postcategory/' + categoryId + '/']);
+  }
+
+  private getPostDetails(){
     this._activatedRoute.params.subscribe(params => {
-        this.postId = +params['id'];
+      this.postId = +params['id'];
     });
     this._postService.getById(this.postId).subscribe(data=>{
       this.post = data;
@@ -56,25 +89,6 @@ export class PostDetailsComponent {
     this._userService.getLoggedUserData(this.cookieValue).subscribe(data=>{
         this.user =  data;
     });
-  }
-
-  addCommentEvent(event){
-    let today = this.getCurrentDate();
-    let author = this.user.first_name + ' ' + this.user.last_name;
-    let body = {
-      "description":  this.descriptionText,
-      "post": this.postId,
-      "posted_date": String(today),
-      "author": author
-    }
-    this._commentService.create(body).subscribe(data=>{
-      this.descriptionText = "";
-      this.getCommentList(this.postId);
-    });
-  }
-
-  goToPostByCategoryId(categoryId){
-    this._router.navigate(['postcategory/' + categoryId + '/']);
   }
 
 }
